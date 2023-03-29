@@ -11,8 +11,36 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+
+model User {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  chatLogs  ChatLog[]
+  
+  @@index([userId])
+}
+
+model ChatLog {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  input     String   @db.VarChar(400)
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  messages Message[]
+
+  @@index ([userId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  input     String   @db.VarChar(400)
+  output    String   @db.VarChar(400)
+
+  chatLogId String
+  chatLog   ChatLog  @relation(fields: [chatLogId], references: [id])
+
+  @@index([chatLogId])
 }
