@@ -8,6 +8,12 @@ const server = z.object({
   DATABASE_URL: z.string().url(),
   OPENAI_API_KEY: z.string(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  SERPAPI_API_KEY: z.string(),
+  PINECONE_ENVIRONMENT: z.string(),
+  PINECONE_API_KEY: z.string(),
+  PINECONE_INDEX_NAME: z.string(),
+  APIFY_API_KEY: z.string(),
+  PINECONE_NAMESPACE: z.string(),
 });
 
 /**
@@ -28,7 +34,13 @@ const processEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY, // adding openai api key
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  SERPAPI_API_KEY: process.env.SERPAPI_API_KEY,
+  PINECONE_ENVIRONMENT: process.env.PINECONE_ENVIRONMENT,
+  PINECONE_API_KEY: process.env.PINECONE_API_KEY,
+  PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME,
+  APIFY_API_KEY: process.env.APIFY_API_KEY,
+  PINECONE_NAMESPACE: process.env.PINECONE_NAMESPACE,
 };
 
 // Don't touch the part below
