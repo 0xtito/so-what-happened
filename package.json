@@ -1,5 +1,5 @@
 {
-  "name": "tx-searcher",
+  "name": "so-what-happened",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,17 +13,21 @@
     "@clerk/nextjs": "^4.13.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
+    "@pinecone-database/pinecone": "^0.0.10",
     "@prisma/client": "^4.11.0",
     "@tanstack/react-query": "^4.28.0",
     "@trpc/client": "^10.18.0",
     "@trpc/next": "^10.18.0",
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
+    "apify-client": "^2.6.4",
     "langchain": "^0.0.43",
     "next": "^13.2.4",
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-markdown": "^8.0.6",
+    "serpapi": "^1.1.1",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
   },
