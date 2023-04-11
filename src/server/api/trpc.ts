@@ -118,4 +118,4 @@ const enforeUserIsAuthed = t.middleware(async ({ ctx, next }) => {
   });
 });
 
-export const privateProdcedure = t.procedure.use(enforeUserIsAuthed);
+export const privateProcedure = t.procedure.use(enforeUserIsAuthed);

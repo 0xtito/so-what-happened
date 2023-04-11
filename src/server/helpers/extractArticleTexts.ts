@@ -79,6 +79,7 @@ export async function extractArticleTexts(urls: string[]) {
     // because it is being returned as type "unkown" - just setting it to any
     const rawText = (item.text as string) || "";
     const title = (item.title as string) || "";
+    const image = (item.image as string) || "";
     const description = (item.description as string) || "";
     const publisher = (item.publisher as string) || "";
     const url = (item.url as string) || "";
@@ -92,6 +93,7 @@ export async function extractArticleTexts(urls: string[]) {
     // const { title, description, publisher, url }: FormattedArticleData = item;
     const formattedData = {
       title,
+      image,
       description,
       publisher,
       url,

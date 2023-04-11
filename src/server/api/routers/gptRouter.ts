@@ -1,7 +1,7 @@
 // ~/server/api/trpc/chatGPT.router.ts
 import {
   createTRPCRouter,
-  privateProdcedure,
+  privateProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
 import { z } from "zod";
@@ -41,7 +41,7 @@ export const gptRouter = createTRPCRouter({
       const urls = await getUrls(sanitizedQuestion);
 
       const articleTexts = await extractArticleTexts(urls);
-      console.log(articleTexts);
+      // console.log(articleTexts);
 
       return articleTexts;
 
@@ -57,7 +57,7 @@ export const gptRouter = createTRPCRouter({
       // );
     }),
 
-  chatWithArticle: privateProdcedure
+  chatWithArticle: privateProcedure
     .input(
       z.object({
         userInput: z.string(),
@@ -101,7 +101,7 @@ export const gptRouter = createTRPCRouter({
       // await executer.memory?.saveContext(history[0], history[1]) could do something like to give the executer the memory of the article it gave the user
 
       const res = await executer.call({ input: input.userInput });
-      console.log(res);
+      // console.log(res);
 
       return res;
     }),
@@ -115,7 +115,7 @@ export const gptRouter = createTRPCRouter({
 
   // will be used for the first time the user asks a question
   // using a middlware, we are checking to make sure the user is signed in
-  articleRequest: privateProdcedure
+  articleRequest: privateProcedure
     .input(
       z.object({
         userInput: z.string(),
@@ -123,7 +123,8 @@ export const gptRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const userId = ctx.userId; // will use this once the ai responses, and we can then send to server
+      // from the userId, we can get the user's chat history. However, this procedure will only be called for the first time the user asks a question
+      const userId = ctx.userId;
       // const { userInput, history } = input;
       const { userInput, history } = input;
       /**
@@ -151,24 +152,22 @@ export const gptRouter = createTRPCRouter({
         }
       );
 
-      const chain = makeChain(vectorStore, (token: string) => {
-        return token;
-      });
-
-      console.log(`chain`, chain);
-
-      // so instead of using the chain here, it could be ideal to send the chain to the client - and from there call it. This will allow us to use the stream feature of pinecone
+      return { sanitizedQuestion, vectorStore };
 
       try {
-        const res: ChainValues = await chain.call({
-          question: sanitizedQuestion,
-          chat_history: history || [],
-        });
-        console.log(res);
-        return JSON.stringify({
-          response: res,
-          sourceDocs: (res.sourceDocuments as Document[]) || [],
-        });
+        // return chain.call({
+        //   question: sanitizedQuestion,
+        //   chat_history: history || [],
+        // });
+        // const res: ChainValues = await chain.call({
+        //   question: sanitizedQuestion,
+        //   chat_history: history || [],
+        // });
+        // console.log(res);
+        // return JSON.stringify({
+        //   response: res,
+        //   sourceDocs: (res.sourceDocuments as Document[]) || [],
+        // });
       } catch (error) {
         console.log("Failed to get article data", error);
         throw new Error("Failed to get article data");
