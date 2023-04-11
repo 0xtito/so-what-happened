@@ -32,6 +32,7 @@ export async function ingestData(articleData: FormattedArticleData[]) {
         description: article.description || "",
         publisher: article.publisher || "",
         url: article.url || "",
+        image: article.image || "",
       };
     });
 
