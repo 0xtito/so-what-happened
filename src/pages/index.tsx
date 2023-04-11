@@ -45,12 +45,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-{
-  /* <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e7dbe] to-[#0d0e32]">
-        <div>
-          {!user.isSignedIn && <SignInButton />}
-          {!!user.isSignedIn && <SignOutButton />}
-        </div>
-      </main> */
-}

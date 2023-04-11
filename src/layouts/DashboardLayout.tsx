@@ -56,7 +56,7 @@ export function DashboardLayout() {
           </div>
         </header>
         {/* flex max-w-screen-xl mx-auto grow items-start gap-x-8 px-8 py-10 */}
-        <div className="flex w-full grow items-start gap-x-4 px-8 py-10">
+        <div className="flex w-full grow items-start gap-x-4 px-6 py-10">
           <aside className="sticky top-8 hidden max-h-screen shrink-0 border-r-slate-400 lg:block">
             <ArticlesListSection />
           </aside>
